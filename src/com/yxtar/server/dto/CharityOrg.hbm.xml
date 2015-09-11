@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.CharityOrg" table="charity_org">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="cpersonFname" type="string">
+            <column name="cpersonFname" />
+        </property>
+        <property name="cpersonLname" type="string">
+            <column name="cpersonLname" />
+        </property>
+        <property name="cpersonEmail" type="string">
+            <column name="cpersonEmail" />
+        </property>
+        <property name="cpersonMobile" type="string">
+            <column name="cpersonMobile" />
+        </property>
+        <property name="loginId" type="string">
+            <column name="loginId" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="horiLogoPhoto" type="string">
+            <column name="horiLogoPhoto" />
+        </property>
+        <property name="vertLogoPhoto" type="string">
+            <column name="vertLogoPhoto" />
+        </property>
+        <property name="squareLogoPhoto" type="string">
+            <column name="squareLogoPhoto" />
+        </property>
+        <property name="introBackgroundPhoto" type="string">
+            <column name="introBackgroundPhoto" />
+        </property>
+        <property name="longIntrod" type="string">
+            <column name="longIntrod" />
+        </property>
+        <property name="shortIntrod" type="string">
+            <column name="shortIntrod" />
+        </property>
+        <property name="introdPageNum" type="integer">
+            <column name="introdPageNum" />
+        </property>
+        <property name="htmlIntrod" type="string">
+            <column name="htmlIntrod" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+        <property name="amountPerSupport" type="integer">
+            <column name="amountPerSupport" />
+        </property>
+        <property name="longitude" type="double">
+            <column name="longitude" />
+        </property>
+        <property name="latitude" type="double">
+            <column name="latitude" />
+        </property>
+        
+        <set name="charityFunds" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="advertiserId" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CharityFund"/>
+		</set>
+    </class>
+</hibernate-mapping>

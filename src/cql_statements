@@ -1,0 +1,4 @@
+0、create keyspace
+create keyspace test_base with replication ={'class':'SimpleStrategy','replication_factor':1};
+1、create table
+create table testcassandra(fmid bigint, id uuid ,primary key(id));

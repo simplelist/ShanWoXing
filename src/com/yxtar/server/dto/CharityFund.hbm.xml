@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.CharityFund" table="charity_fund">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="charityOrgId" column="charityOrgId" class="com.yxtar.server.dto.CharityOrg"/>
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        <property name="mainSmallPhoto" type="string">
+            <column name="mainSmallPhoto" />
+        </property>
+        <property name="eventSmallPhoto" type="string">
+            <column name="eventSmallPhoto" />
+        </property>
+        <property name="eventBackgroundPhoto" type="string">
+            <column name="eventBackgroundPhoto" />
+        </property>
+        <property name="voteTablePhoto" type="string">
+            <column name="voteTablePhoto" />
+        </property>
+        <property name="introMainPhoto" type="string">
+            <column name="introMainPhoto" />
+        </property>
+        <property name="introdShort" type="string">
+            <column name="introdShort" />
+        </property>
+        <property name="introdLong" type="string">
+            <column name="introdLong" />
+        </property>
+        <property name="introdPageNum" type="integer">
+            <column name="introdPageNum" />
+        </property>
+        <property name="htmlIntrod" type="string">
+            <column name="htmlIntrod" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="createDate" />
+        </property>
+        <property name="endDate" type="java.util.Date">
+            <column name="endDate" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+        <property name="fundTotal" type="double">
+            <column name="fundTotal" />
+        </property>
+        
+        <set name="charityCamps" table="camp_fund_relation">
+		   <key column="fund_id"/>
+		   <many-to-many class="com.yxtar.server.dto.CharityCamp" column="camp_id"/>
+		</set>
+		
+		<set name="charityFundHistories" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="charityCampId" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CharityFundHistory"/>
+		</set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.SystemSetting" table="system_setting">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="platform" type="integer">
+            <column name="platform" />
+        </property>
+        <property name="supportVer" type="integer">
+            <column name="supportVer" />
+        </property>
+        <property name="updateLink" type="string">
+            <column name="updateLink" />
+        </property>
+        <property name="appLatestDataVersion" type="integer">
+            <column name="appLatestDataVersion" />
+        </property>
+        <property name="maintFlag" type="boolean">
+            <column name="maintFlag" />
+        </property>
+        <property name="presetMaintFlag" type="boolean">
+            <column name="presetMaintFlag" />
+        </property>
+        <property name="presetMaintStartTime" type="java.util.Date">
+            <column name="presetMaintStartTime" />
+        </property>
+        <property name="presetMainEndTime" type="java.util.Date">
+            <column name="presetMainEndTime" />
+        </property>
+       
+    </class>
+</hibernate-mapping>

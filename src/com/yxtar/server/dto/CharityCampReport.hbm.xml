@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.CharityCampReport" table="charity_camp_report">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+         <many-to-one name="charityCampId" class="com.yxtar.server.dto.CharityCamp" unique="true">
+			<column name="charityCampId" />
+		</many-to-one>
+        <property name="sponsorId" type="integer">
+            <column name="sponsorId" />
+        </property>
+        <property name="campReachRate" type="integer">
+            <column name="campReachRate" />
+        </property>
+        <property name="actionFinishRate" type="integer">
+            <column name="actionFinishRate" />
+        </property>
+        <property name="actionAnswerDistribution" type="string">
+            <column name="actionAnswerDistribution" />
+        </property>
+       
+    </class>
+</hibernate-mapping>

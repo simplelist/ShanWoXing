@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.Advertiser" table="advertiser">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="cpersonFname" type="string">
+            <column name="cpersonFname" />
+        </property>
+        <property name="cpersonLname" type="string">
+            <column name="cpersonLname" />
+        </property>
+        <property name="cpersonEmail" type="string">
+            <column name="cpersonEmail" />
+        </property>
+        <property name="cpersonMobile" type="string">
+            <column name="cpersonMobile" />
+        </property>
+        <property name="loginId" type="string">
+            <column name="loginId" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <property name="companyName" type="string">
+            <column name="companyName" />
+        </property>
+        <property name="horiLogoPhoto" type="string">
+            <column name="horiLogoPhoto" />
+        </property>
+        <property name="vertLogoPhoto" type="string">
+            <column name="vertLogoPhoto" />
+        </property>
+        <property name="squareLogoPhoto" type="string">
+            <column name="squareLogoPhoto" />
+        </property>
+        <property name="introBackgroundPhoto" type="string">
+            <column name="introBackgroundPhoto" />
+        </property>
+        <property name="companyLongIntrod" type="string">
+            <column name="companyLongIntrod" />
+        </property>
+        <property name="companyShortIntrod" type="string">
+            <column name="companyShortIntrod" />
+        </property>
+        <property name="companyIntrodPageNum" type="integer">
+            <column name="companyIntrodPageNum" />
+        </property>
+        <property name="companyHtmlIntrod" type="string">
+            <column name="companyHtmlIntrod" />
+        </property>
+        <property name="companyWebSite" type="string">
+            <column name="companyWebSite" />
+        </property>
+        <property name="accBalance" type="double">
+            <column name="accBalance" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+		<set name="charityCamps" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="camp_id" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CharityCamp"/>
+		</set>
+		<set name="moneyInRecords" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="advertiserId" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.MoneyInRecord"/>
+		</set>
+    </class>
+</hibernate-mapping>

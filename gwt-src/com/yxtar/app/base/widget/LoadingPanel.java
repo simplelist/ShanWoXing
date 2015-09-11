@@ -1,0 +1,1 @@
+package com.yxtar.app.base.widget;public interface LoadingPanel {    public void show() ;    public void hiden();    public void setMsg(String msg);}

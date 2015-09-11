@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="  
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd  
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+		<!-- property 配置文件 -->
+	<context:property-placeholder location="classpath:mysql.properties" ignore-unresolvable="true" />
+	<import resource="classpath:spring-cassandra.xml" />
+    <!--start cassandra  -->
+    <bean id="cassandraConnParam" class="com.yxtar.server.cassandra.dao.CassandraConnParam">
+        <property name="contactPoints"><value>${cassandra.contactpoints}</value></property>
+        <property name="port"><value>${cassandra.port}</value></property>
+        <property name="userName"><value>${cassandra.username}</value></property>
+        <property name="passWord"><value>${cassandra.password}</value></property>
+        <property name="keySpace"><value>${cassandra.keyspace}</value></property>
+    </bean>
+    <bean id="baseCassandraDao" class="com.yxtar.server.cassandra.dao.BaseCassandraConfig">
+        <property name="param" ref="cassandraConnParam"></property>
+    </bean>
+     <!--end cassandra  -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="validationQuery" value="${jdbc.validationQuery}" />
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+	</bean> -->
+<!-- 数据源配置 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+        init-method="init" destroy-method="close">
+        <!-- 驱动名称 -->
+        <property name="DriverClassName" value="${jdbc.driver}" />
+        <!-- JDBC连接串 -->
+        <property name="url" value="${jdbc.url}" />
+        <!-- 数据库用户名称 -->
+		<property name="username" value="${jdbc.username}" />
+        <!-- 数据库密码 -->
+		<property name="password" value="${jdbc.password}" />
+        <!-- 连接池最大使用连接数量 -->
+        <property name="maxActive" value="20" />
+        <!-- 初始化大小 -->
+        <property name="initialSize" value="5" />
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="2" />
+        <!-- 逐出连接的检测时间间隔 -->
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <!-- 最小逐出时间 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <!-- 测试有效用的SQL Query -->
+        <property name="validationQuery" value="SELECT 'x'" />
+        <!-- 连接空闲时测试是否有效 -->
+        <property name="testWhileIdle" value="true" />
+        <!-- 获取连接时测试是否有效 -->
+        <property name="testOnBorrow" value="false" />
+        <!-- 归还连接时是否测试有效 -->
+        <property name="testOnReturn" value="false" />
+         <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+         <!-- 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。 -->
+	      <property name="poolPreparedStatements" value="false" />
+	      <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        
+    </bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+	        <list>
+	            <value>classpath:com/yxtar/server/dto/*.hbm.xml</value>
+	        </list>
+   		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.autoReconnect">true</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext
+				</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 日志 -->
+	<aop:aspectj-autoproxy />
+	<bean class="com.yxtar.server.utility.LogAspect" />
+
+	<!-- ************DAO layer*************** -->
+	<!-- *****************Service Layer****************** -->
+
+	<!-- GWT Servlet -->
+	<!-- 事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- AOP 事务pointer -->
+	<tx:advice id="advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!--加入proxy-target-class="true" 即可,默认是false; -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="cut"
+			expression="execution(* com.yxtar.server.service.impl.*.*(..))" />
+		<aop:advisor advice-ref="advice" pointcut-ref="cut" />
+	</aop:config>
+</beans> 

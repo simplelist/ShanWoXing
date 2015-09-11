@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.CharityCampHistory" table="charity_camp_history">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+		<many-to-one name="charityCampId" column="charityCampId" class="com.yxtar.server.dto.CharityCamp"/>
+        <property name="type" type="integer">
+            <column name="type" />
+        </property>
+        <property name="percentAge" type="integer">
+            <column name="percentAge" />
+        </property>
+        <property name="amount" type="integer">
+            <column name="amount" />
+        </property>
+        <property name="paymentRecordId" type="string">
+            <column name="paymentRecordId" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="createDate" />
+        </property>
+        <property name="htmlMode" type="java.lang.Boolean">
+            <column name="htmlMode" />
+        </property>
+        <property name="htmlContent" type="string">
+            <column name="htmlContent" />
+        </property>
+       
+    </class>
+</hibernate-mapping>

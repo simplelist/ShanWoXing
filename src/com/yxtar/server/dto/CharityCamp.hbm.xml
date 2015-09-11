@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.CharityCamp" table="charity_camp">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="advertisers" column="advertiser_id" class="com.yxtar.server.dto.Advertiser"/>
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        <property name="smallHorPhoto" type="string">
+            <column name="smallHorPhoto" />
+        </property>
+        <property name="smallVertPhoto" type="string">
+            <column name="smallVertPhoto" />
+        </property>
+        <property name="introMainPhoto" type="string">
+            <column name="introMainPhoto" />
+        </property>
+        <property name="eventUsagePhoto" type="string">
+            <column name="eventUsagePhoto" />
+        </property>
+        <property name="introdLong" type="string">
+            <column name="introdLong" />
+        </property>
+        <property name="introdShort" type="string">
+            <column name="introdShort" />
+        </property>
+        <property name="introdPageNum" type="integer">
+            <column name="introdPageNum" />
+        </property>
+        <property name="htmlIntrod" type="string">
+            <column name="htmlIntrod" />
+        </property>
+        <property name="campType" type="integer">
+            <column name="campType" />
+        </property>
+        <property name="cycleNumber" type="integer">
+            <column name="cycleNumber" />
+        </property>
+        <property name="cycleNoofdate" type="integer">
+            <column name="cycleNoofdate" />
+        </property>
+        <property name="currentCycle" type="integer">
+            <column name="currentCycle" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="startDate" />
+        </property>
+        <property name="endDate" type="java.util.Date">
+            <column name="endDate" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="district" type="string">
+            <column name="district" />
+        </property>
+        <property name="actionType" type="integer">
+            <column name="actionType" />
+        </property>
+        <property name="actionAdvPhoto" type="string">
+            <column name="actionAdvPhoto" />
+        </property>
+        <property name="actionQuestion" type="string">
+            <column name="actionQuestion" />
+        </property>
+        <property name="actionAnswer" type="string">
+            <column name="actionAnswer" />
+        </property>
+        <property name="isPublic" type="boolean">
+            <column name="isPublic" />
+        </property>
+        <property name="targetType" type="integer">
+            <column name="targetType" />
+        </property>
+        <property name="numOfTarget" type="integer">
+            <column name="numOfTarget" />
+        </property>
+        <property name="numPeopleTOne" type="integer">
+            <column name="numPeopleTOne" />
+        </property>
+        <property name="numPeopleTTwo" type="integer">
+            <column name="numPeopleTTwo" />
+        </property>
+        <property name="numPeopleTThree" type="integer">
+            <column name="numPeopleTThree" />
+        </property>
+        <property name="donationTOne" type="integer">
+            <column name="donationTOne" />
+        </property>
+        <property name="donationTTwo" type="integer">
+            <column name="donationTTwo" />
+        </property>
+        <property name="donationTThree" type="integer">
+            <column name="donationTThree" />
+        </property>
+        <property name="amountPerSupport" type="double">
+            <column name="amountPerSupport" />
+        </property>
+        <property name="longitude" type="double">
+            <column name="longitude" />
+        </property>
+        <property name="latitude" type="double">
+            <column name="latitude" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+        <property name="periodNum" type="integer">
+            <column name="periodNum" />
+        </property>
+        <one-to-one name="reportId" class="com.yxtar.server.dto.CharityCampReport" cascade="all" property-ref="charityCampId"></one-to-one>
+        
+		<set name="campSponsorRelations" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="camp_id" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CampSponsorRelation"/>
+		</set>
+		
+		<set name="charityFunds" table="camp_fund_relation">
+		   <key column="camp_id"/>
+		   <many-to-many class="com.yxtar.server.dto.CharityFund" column="fund_id"/>
+		</set>
+		<set name="charityCampHistories" lazy="false" cascade="all" order-by="id desc">
+			<key>
+				<column name="charityCampId" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CharityCampHistory"/>
+		</set>
+    </class>
+</hibernate-mapping>

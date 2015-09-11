@@ -1,0 +1,1 @@
+package com.yxtar.app.base.widget;import com.google.gwt.event.shared.EventHandler;public interface StepMoveEndEventHandler extends EventHandler { public void onStepMoveEnd(StepMoveEndEvent event);  }

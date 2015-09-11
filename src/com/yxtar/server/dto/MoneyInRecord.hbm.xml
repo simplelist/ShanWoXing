@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.MoneyInRecord" table="money_in_record">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="advertiserId" column="advertiserId" class="com.yxtar.server.dto.Advertiser"/>
+        <property name="amount" type="double">
+            <column name="amount" />
+        </property>
+        <property name="paymentType" type="integer">
+            <column name="paymentType" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="createTime" />
+        </property>
+        <property name="paidTime" type="java.util.Date">
+            <column name="paidTime" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
