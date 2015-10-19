@@ -1,9 +1,12 @@
 package com.yxtar.server.dto;
 
-import com.yxtar.app.base.model.map.BaseMap;
-
 import java.util.Date;
 import java.util.Set;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.yxtar.app.base.model.map.BaseMap;
+import com.yxtar.server.util.CustomDateSerializer;
 
 public class CharityCamp extends BaseDto {
 	@Override
@@ -26,7 +29,7 @@ public class CharityCamp extends BaseDto {
 	private Integer campType;
 	private Integer cycleNumber;
 	private Integer cycleNoofdate;
-	private Integer currentCycle;
+	private Double maxDonationAmount;
 	private Date startDate;
 	private Date endDate;
 	private String province;
@@ -49,13 +52,13 @@ public class CharityCamp extends BaseDto {
 	private Double amountPerSupport;
 	private Double longitude;
 	private Double latitude;
-	
+
 	private Integer status;
 	private Integer periodNum;
 	private CharityCampReport reportId;
 
 	private Set<CampSponsorRelation> campSponsorRelations;
-	private Set<CharityFund> charityFunds;
+	private Set<CampFundRelation> campFundRelations;
 	private Set<CharityCampHistory> charityCampHistories;
 
 	public CharityCampReport getReportId() {
@@ -170,14 +173,7 @@ public class CharityCamp extends BaseDto {
 		this.cycleNoofdate = cycleNoofdate;
 	}
 
-	public Integer getCurrentCycle() {
-		return currentCycle;
-	}
-
-	public void setCurrentCycle(Integer currentCycle) {
-		this.currentCycle = currentCycle;
-	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -186,6 +182,7 @@ public class CharityCamp extends BaseDto {
 		this.startDate = startDate;
 	}
 
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -346,14 +343,6 @@ public class CharityCamp extends BaseDto {
 		this.campSponsorRelations = campSponsorRelations;
 	}
 
-	public Set<CharityFund> getCharityFunds() {
-		return charityFunds;
-	}
-
-	public void setCharityFunds(Set<CharityFund> charityFunds) {
-		this.charityFunds = charityFunds;
-	}
-
 	@Override
 	public void generateMapProcess(Object object) {
 
@@ -397,6 +386,22 @@ public class CharityCamp extends BaseDto {
 
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+
+	public Double getMaxDonationAmount() {
+		return maxDonationAmount;
+	}
+
+	public void setMaxDonationAmount(Double maxDonationAmount) {
+		this.maxDonationAmount = maxDonationAmount;
+	}
+
+	public Set<CampFundRelation> getCampFundRelations() {
+		return campFundRelations;
+	}
+
+	public void setCampFundRelations(Set<CampFundRelation> campFundRelations) {
+		this.campFundRelations = campFundRelations;
 	}
 
 }

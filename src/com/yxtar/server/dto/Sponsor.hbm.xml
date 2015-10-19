@@ -69,7 +69,7 @@
             <column name="effortYearly" />
         </property>
         
-		<set name="campSponsorRelations" lazy="false" cascade="all" order-by="id desc">
+		<set name="campSponsorRelations" lazy="true" cascade="all" order-by="id desc">
 			<key>
 				<column name="spon_id" />
 			</key>

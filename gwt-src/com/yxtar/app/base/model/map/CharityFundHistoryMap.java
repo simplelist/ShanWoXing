@@ -12,8 +12,10 @@ public class CharityFundHistoryMap extends BaseMap {
 	private String content;
 	private String paymentRecordId;
 	private Date createDate;
-	private Boolean htmlMode;
+	private Boolean htmlContentMode;
+	private Boolean htmlIntroMode;
 	private String htmlContent;
+	private String htmlIntro;
 
 	public Integer getId() {
 		return id;
@@ -71,20 +73,36 @@ public class CharityFundHistoryMap extends BaseMap {
 		this.charityFundId = charityFundId;
 	}
 
-	public Boolean getHtmlMode() {
-		return htmlMode;
-	}
-
-	public void setHtmlMode(Boolean htmlMode) {
-		this.htmlMode = htmlMode;
-	}
-
 	public String getHtmlContent() {
 		return htmlContent;
 	}
 
 	public void setHtmlContent(String htmlContent) {
 		this.htmlContent = htmlContent;
+	}
+
+	public Boolean getHtmlContentMode() {
+		return htmlContentMode;
+	}
+
+	public void setHtmlContentMode(Boolean htmlContentMode) {
+		this.htmlContentMode = htmlContentMode;
+	}
+
+	public Boolean getHtmlIntroMode() {
+		return htmlIntroMode;
+	}
+
+	public void setHtmlIntroMode(Boolean htmlIntroMode) {
+		this.htmlIntroMode = htmlIntroMode;
+	}
+
+	public String getHtmlIntro() {
+		return htmlIntro;
+	}
+
+	public void setHtmlIntro(String htmlIntro) {
+		this.htmlIntro = htmlIntro;
 	}
 
 }

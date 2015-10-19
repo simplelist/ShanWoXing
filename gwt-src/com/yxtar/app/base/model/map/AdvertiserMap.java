@@ -2,8 +2,6 @@ package com.yxtar.app.base.model.map;
 
 import java.util.List;
 
-
-
 public class AdvertiserMap extends BaseMap {
 	private Integer id;
 	private String cpersonFname;
@@ -19,7 +17,7 @@ public class AdvertiserMap extends BaseMap {
 	private String introBackgroundPhoto;
 	private String companyLongIntrod;
 	private String companyShortIntrod;
-	private String companyIntrodPageNum;
+	private Integer companyIntrodPageNum;
 	private String companyHtmlIntrod;
 	private String companyWebSite;
 	private Double accBalance;
@@ -140,14 +138,6 @@ public class AdvertiserMap extends BaseMap {
 		this.companyShortIntrod = companyShortIntrod;
 	}
 
-	public String getCompanyIntrodPageNum() {
-		return companyIntrodPageNum;
-	}
-
-	public void setCompanyIntrodPageNum(String companyIntrodPageNum) {
-		this.companyIntrodPageNum = companyIntrodPageNum;
-	}
-
 	public String getCompanyHtmlIntrod() {
 		return companyHtmlIntrod;
 	}
@@ -194,6 +184,14 @@ public class AdvertiserMap extends BaseMap {
 
 	public void setMoneyInRecords(List<MoneyInRecordMap> moneyInRecords) {
 		this.moneyInRecords = moneyInRecords;
+	}
+
+	public Integer getCompanyIntrodPageNum() {
+		return companyIntrodPageNum;
+	}
+
+	public void setCompanyIntrodPageNum(Integer companyIntrodPageNum) {
+		this.companyIntrodPageNum = companyIntrodPageNum;
 	}
 
 }

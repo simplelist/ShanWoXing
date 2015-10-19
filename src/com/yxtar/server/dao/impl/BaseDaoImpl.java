@@ -12,8 +12,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
+import com.yxtar.app.base.utility.ValidationUtil;
 import com.yxtar.server.dao.BaseDao;
 import com.yxtar.server.dao.IPager;
 import com.yxtar.server.util.ListResult;
@@ -26,7 +28,8 @@ import com.yxtar.server.util.ListResult;
  * @param <K>
  *            the key type
  */
-public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable> implements BaseDao<M, K> {
+@Repository("baseDao")
+public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable> extends HibernateDaoSupport implements BaseDao<M, K> {
 	protected StringBuilder hql;
 	protected Query query;
 	protected Query countQuery;
@@ -34,11 +37,7 @@ public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable
 	protected ListResult<M> listResult;
 	protected List<M> result;
 	protected Integer resultCount=0;
-	/** The session factory. */
-	@Autowired(required = true)
-	@Qualifier("sessionFactory")
-	private SessionFactory sessionFactory;
-
+	protected ValidationUtil validationUtil=ValidationUtil.getInstance();
 	/** The entity class. */
 	private final Class<M> entityClass;
 
@@ -57,41 +56,27 @@ public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable
 	public Session getSession() {
 		Session session = null;
 		try {
-			session = sessionFactory.getCurrentSession();
+			session = getSessionFactory().getCurrentSession();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			session = sessionFactory.openSession();
+			session = getSessionFactory().openSession();
 		}
 		return session;
 	}
 
-	/**
-	 * Open session.
-	 *
-	 * @return the session
-	 */
-	public Session openSession() {
-		return sessionFactory.openSession();
-	}
 
 	/**
 	 * Gets the session factory.
 	 *
 	 * @return the session factory
 	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
 
 	/**
 	 * Sets the session factory.
 	 *
-	 * @param sessionFactory
+	 * @param getSessionFactory()
 	 *            the new session factory
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	/**
 	 * Gets the.
@@ -147,7 +132,11 @@ public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable
 	public void deleteObject(M model) {
 		getSession().delete(model);
 	}
-	
+	@Autowired
+	public void setSessionFactory0(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
+
 	@Override
 	public ListResult<M> getList(IPager pager,String dtoName) {
 		initParameters(dtoName);
@@ -195,9 +184,20 @@ public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable
 		 */
 		query = getSession().createQuery(hql.toString());
 		setQueryParameters(query,paramsMap);
-		result = query.setFirstResult(pager.getStart()).setMaxResults(pager.getLimit()).list();
-		listResult.setDataList(result);
-		return listResult;
+		try {
+			if (pager.getStart()!=null) {
+				query.setFirstResult(pager.getStart());
+			}
+			if (pager.getLimit()!=null) {
+				query.setMaxResults(pager.getLimit());
+			}
+			result = query.list();
+			listResult.setDataList(result);
+			return listResult;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	
@@ -209,9 +209,9 @@ public abstract class BaseDaoImpl<M extends Serializable, K extends Serializable
 	 */
 	public Query setQueryParameters(Query squery, Map<Integer, Object> sparamsMap) {
 		if (squery != null && sparamsMap != null) {
-			for (Integer i : paramsMap.keySet()) {
-				if (paramsMap.get(i) != null) {
-					query.setParameter(i, paramsMap.get(i));
+			for (Integer i : sparamsMap.keySet()) {
+				if (sparamsMap.get(i) != null) {
+					squery.setParameter(i, sparamsMap.get(i));
 				}
 			}
 		}

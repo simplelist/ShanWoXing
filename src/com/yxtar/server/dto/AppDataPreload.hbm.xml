@@ -17,7 +17,7 @@
         <property name="type" type="integer">
             <column name="type" />
         </property>
-        <property name="actionList" type="string">
+        <property name="actionList" type="string" length='10240'>
             <column name="actionList" />
         </property>
     </class>

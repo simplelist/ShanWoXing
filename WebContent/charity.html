@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<script type="text/javascript" language="javascript" src="javascript/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="javascript/bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript" src="javascript/less.min.js"></script>
+<style>
+.red{
+color:red;
+}
+</style>
+<script type="text/javascript">
+	$().ready(function() {
+		result="";
+		function setResult(selector,data,str){
+			$(selector).html(data);
+			$(selector).attr("class",str);
+		}
+	
+		$("#button1").click(function(){
+			resultDiv="#result1";
+			testData = "{'word':'','start_index':'1','num_of_row':'10'}";
+			a=$.ajax({
+				url : "charity/getUncompletedCharity.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		$("#button2").click(function(){
+			resultDiv="#result2";
+			testData = "{'word':'','start_index':'1','num_of_row':'10','city':'','province':'shang','area':''}";
+			a=$.ajax({
+				url : "charity/getUncompletedCharityNear.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		$("#button3").click(function(){
+			resultDiv="#result3";
+			testData = "{'member_id':'07a69d10-61b6-11e5-4880-61ec465024b1','location_id':'07a69d10-61b6-11e5-4880-61ec465024b2'}";
+			a=$.ajax({
+				url : "charity/getCharityByLocationID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		$("#button4").click(function(){
+			resultDiv="#result4";
+			testData = "{'camp_id':'1'}";
+			a=$.ajax({
+				url : "charity/getCharityByDCampID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		/* 5 */
+		$("#button5").click(function(){
+			resultDiv="#result5";
+			testData = "{'charity_camp_id':'1','member_id':'07a69d10-61b6-11e5-4880-61ec465024b1'}";
+			a=$.ajax({
+				url : "charity/getCharityByID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		/* 6 */
+		$("#button6").click(function(){
+			resultDiv="#result6";
+			testData = "{'charity_camp_id':'1','period_num':'1'}";
+			a=$.ajax({
+				url : "charity/getProgressByCharityID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		/* 7 */
+		$("#button7").click(function(){
+			resultDiv="#result7";
+			testData = "{'charity_camp_id':'2'}";
+			a=$.ajax({
+				url : "charity/getSponsorListByCharityID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		/* 8 */
+		$("#button8").click(function(){
+			resultDiv="#result8";
+			testData = "{'camp_id':'1','start_index':'0','num_of_row':'10'}";
+			a=$.ajax({
+				url : "charity/getEventByCampID.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		/* test */
+		$("#buttontest").click(function(){
+			resultDiv="#resulttest";
+			testData = "{'camp_id':'1','start_index':'0','num_of_row':'10'}";
+			a=$.ajax({
+				url : "charity/test.do?camp_id=1",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, xhr){
+					result=textStatus+"------->"+a.getAllResponseHeaders();  
+					setResult(resultDiv,result,"text-success");
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result,"text-danger");
+			   }
+			});
+		});
+		
+	}); 
+</script>
+</head>
+<body style="background: #ffffff; margin: 0px; padding: 0px;">
+<h1 class="text-success text-center">慈善活动</h1>
+<div class="table-responsive">
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>獲取所有非完結慈善活動清單</td>
+			<td>
+				<button id="button1" class="btn">UncompletedCharity</button>
+			</td>
+			
+			<td id="result1"></td>
+		</tr>
+		<tr>
+			<td>獲取所有非完結慈善活動清單</td>
+			<td>
+				<button id="button2" class="btn">UncompletedCharityNear</button>
+			</td>
+			
+			<td id="result2"></td>
+		</tr>
+		<tr>
+			<td>個人活動獲取接口</td>
+			<td>
+				<button id="button3" class="btn">getCharityByLocationID</button>
+			</td>
+			
+			<td id="result3"></td>
+		</tr>
+		<tr>
+			<td>101D 獲得慈善活動支持動作信息接口</td>
+			<td>
+				<button id="button4" class="btn">getCharityByDCampID</button>
+			</td>
+			<td id="result4"></td>
+		</tr>
+	</table>
+	
+	
+	<hr />
+	<h4 class="text-success text-center">102 活動明細頁</h4>
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>102A 獲取活動信息接口</td>
+			<td>
+				<button id="button5" class="btn">getCharityByID</button>
+			</td>
+			<td id="result5"></td>
+		</tr>
+		<tr>
+			<td>102B 獲取活動進度接口</td>
+			<td>
+				<button id="button6" class="btn">getProgressByCharityID</button>
+			</td>
+			<td id="result6"></td>
+		</tr>
+		<tr>
+			<td>102E 獲取活動贊助商接口</td>
+			<td>
+				<button id="button7" class="btn">getSponsorListByCharityID</button>
+			</td>
+			<td id="result7"></td>
+		</tr>
+	</table>
+	
+	
+	<hr />
+	<h4 class="text-success text-center">105 活動時間線頁（前名為 － 周期性活動歷史頁）</h4>
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>105A 獲取慈善活動事件清單接口
+獲取該慈善活動的相關事件，以在時間線顯示</td>
+			<td>
+				<button id="button8" class="btn">getEventByCampID</button>
+			</td>
+			<td id="result8"></td>
+		</tr>
+		<tr>
+			<td>buttontest</td>
+			<td>
+				<button id="buttontest" class="btn">buttontest</button>
+			</td>
+			<td id="resulttest"></td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

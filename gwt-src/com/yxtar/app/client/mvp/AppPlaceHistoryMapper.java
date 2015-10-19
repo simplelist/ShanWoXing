@@ -18,11 +18,13 @@ package com.yxtar.app.client.mvp;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import com.yxtar.app.client.place.HomePlace.HomePlaceTokenizer;
+import com.yxtar.app.client.place.UserEditPlace.UserEditPlaceTokenizer;
+import com.yxtar.app.client.place.UserPlace.UserPlaceTokenizer;
 
 /**
  * @author Daniel Kurka
  * 
  */
-@WithTokenizers({ HomePlaceTokenizer.class })
+@WithTokenizers({ HomePlaceTokenizer.class,UserPlaceTokenizer.class,UserEditPlaceTokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

@@ -2,7 +2,10 @@ package com.yxtar.server.dto;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import com.yxtar.app.base.model.map.BaseMap;
+import com.yxtar.server.util.CustomDateSerializer;
 
 public class SystemSetting extends BaseDto {
 	
@@ -77,7 +80,7 @@ public class SystemSetting extends BaseDto {
 	public void setPresetMaintFlag(Boolean presetMaintFlag) {
 		this.presetMaintFlag = presetMaintFlag;
 	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)  
 	public Date getPresetMaintStartTime() {
 		return presetMaintStartTime;
 	}
@@ -85,7 +88,7 @@ public class SystemSetting extends BaseDto {
 	public void setPresetMaintStartTime(Date presetMaintStartTime) {
 		this.presetMaintStartTime = presetMaintStartTime;
 	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)  
 	public Date getPresetMainEndTime() {
 		return presetMainEndTime;
 	}

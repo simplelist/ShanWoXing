@@ -23,7 +23,11 @@ public class ActionUtils {
 	 */
 	public static ActionUtils getInstance() {
 		if (util == null) {
-			util = new ActionUtils();
+			synchronized (ActionUtils.class) {
+				if (util == null) {
+					util = new ActionUtils();
+				}
+			}
 		}
 		return util;
 	}
@@ -82,6 +86,7 @@ public class ActionUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Map result = new HashMap();
 		JSONObject jsonObject = null;
 		try {
 			jsonObject = new JSONObject(jsonString);
@@ -89,7 +94,6 @@ public class ActionUtils {
 			e.printStackTrace();
 		}
 
-		Map result = new HashMap();
 		Iterator iterator = jsonObject.keys();
 		String key = null;
 		String value = null;

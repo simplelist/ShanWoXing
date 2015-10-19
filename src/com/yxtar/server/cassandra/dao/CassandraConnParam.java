@@ -1,27 +1,24 @@
 package com.yxtar.server.cassandra.dao;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class CassandraConnParam {
 	/**
-	 * ID������
+	 * IP地址
 	 */
 	private String contactPoints=null;
 	/**
-	 * ���������
+	 * 端口号
 	 */
 	private String port = null;
 	/**
-	 * ���������
+	 * 用户名
 	 */
 	private String userName = null;
 	/**
-	 * ������
+	 * 密码
 	 */
 	private String passWord = null;
 	/**
-	 * ������
+	 * 密钥
 	 */
 	private String keySpace = null;
 	

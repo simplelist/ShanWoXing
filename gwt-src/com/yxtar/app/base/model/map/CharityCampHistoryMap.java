@@ -2,8 +2,6 @@ package com.yxtar.app.base.model.map;
 
 import java.util.Date;
 
-
-
 public class CharityCampHistoryMap extends BaseMap {
 	private Integer id;
 	private CharityCampMap charityCampId;
@@ -12,6 +10,12 @@ public class CharityCampHistoryMap extends BaseMap {
 	private Integer amount;
 	private String paymentRecordId;
 	private Date createDate;
+
+	private String content;
+	private Boolean htmlIntroMode;
+	private String htmlIntro;
+	private Boolean htmlContentMode;
+	private String htmlContent;
 
 	public Integer getId() {
 		return id;
@@ -67,6 +71,46 @@ public class CharityCampHistoryMap extends BaseMap {
 
 	public void setCharityCampId(CharityCampMap charityCampId) {
 		this.charityCampId = charityCampId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Boolean getHtmlIntroMode() {
+		return htmlIntroMode;
+	}
+
+	public void setHtmlIntroMode(Boolean htmlIntroMode) {
+		this.htmlIntroMode = htmlIntroMode;
+	}
+
+	public String getHtmlIntro() {
+		return htmlIntro;
+	}
+
+	public void setHtmlIntro(String htmlIntro) {
+		this.htmlIntro = htmlIntro;
+	}
+
+	public Boolean getHtmlContentMode() {
+		return htmlContentMode;
+	}
+
+	public void setHtmlContentMode(Boolean htmlContentMode) {
+		this.htmlContentMode = htmlContentMode;
+	}
+
+	public String getHtmlContent() {
+		return htmlContent;
+	}
+
+	public void setHtmlContent(String htmlContent) {
+		this.htmlContent = htmlContent;
 	}
 
 }

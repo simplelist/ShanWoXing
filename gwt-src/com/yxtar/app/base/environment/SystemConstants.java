@@ -4,13 +4,19 @@ import com.google.gwt.i18n.client.Constants;
 
 public interface SystemConstants extends Constants {
 
-  @DefaultStringValue("Save")
-  String btnSave();
+	@DefaultStringValue("Save")
+	String btnSave();
 
-  @DefaultStringValue("Cancel")
-  String btnCancel();
+	@DefaultStringValue("Cancel")
+	String btnCancel();
 
-  @DefaultStringValue("Back")
-  String btnBack();
+	@DefaultStringValue("Back")
+	String btnBack();
+
+	@DefaultStringValue("selected")
+	String selected();
+
+	@DefaultStringValue("unSelected")
+	String unSelected();
 
 }

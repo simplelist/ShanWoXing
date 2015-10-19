@@ -62,13 +62,13 @@
         <property name="status" type="integer">
             <column name="status" />
         </property>
-		<set name="charityCamps" lazy="false" cascade="all" order-by="id desc">
+		<set name="charityCamps" lazy="true" cascade="all" order-by="id desc">
 			<key>
 				<column name="camp_id" />
 			</key>
 			<one-to-many class="com.yxtar.server.dto.CharityCamp"/>
 		</set>
-		<set name="moneyInRecords" lazy="false" cascade="all" order-by="id desc">
+		<set name="moneyInRecords" lazy="true" cascade="all" order-by="id desc">
 			<key>
 				<column name="advertiserId" />
 			</key>

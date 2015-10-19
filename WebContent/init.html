@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<script type="text/javascript" language="javascript" src="javascript/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="javascript/bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript" src="javascript/less.min.js"></script>
+<script type="text/javascript">
+	$().ready(function() {
+		result="";
+		function setResult(selector,data){
+			$(selector).html(data);
+		}
+		$("#button1").click(function(){
+			testData = "{'codeversion':'1'}";
+			a=$.ajax({
+				url : "initial/checkMaint.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result1",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result1",result);
+			   }
+			});
+		});
+		$("#button2").click(function(){
+			testData = "{'codeversion':'1','platform':'1'}";
+			a=$.ajax({
+				url : "initial/checkUpdate.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result2",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result2",result);
+			   }
+			});
+		});
+		$("#button3").click(function(){
+			testData = "{'codeversion':'1','platform':'1'}";
+			a=$.ajax({
+				url : "initial/dataUpdate.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result3",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result3",result);
+			   }
+			});
+		});
+		$("#button4").click(function(){
+			testData = "{'phone':'18520756065','pw':'47120648f18b49a1199b5c1a74ebd3fd','time':'2015-01-01 00:00:00','notification_token':'dfwef2','platform':'ios'}";
+			a=$.ajax({
+				url : "member/login.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result4",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result4",result);
+			   }
+			});
+		});
+		$("#button5").click(function(){
+			testData = "{'phone':'150000000','encrypted_code':'2a3467cd18f7fe8d207533888c5841a4','time':'2015-01-01 00:00:00','new_password':'0b4e7a0e5fe84ad35fb5f95b9ceeac79'}";
+			a=$.ajax({
+				url : "member/resetPwd.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result5",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result5",result);
+			   }
+			});
+		});
+		$("#button6").click(function(){
+			resultDiv="#result6";
+			testData = "{'phone':'1500000000','pw':'2a3467cd18f7fe8d207533888c5841a4','birthday':'2015-01-01 00:00:00','account_name':'acccc','gender':'m','notification_token':'dfwef2','platform':'ios'}";
+			a=$.ajax({
+				url : "member/registerMember.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult(resultDiv,result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result);
+			   }
+			});
+		});
+		$("#button7").click(function(){
+			resultDiv="#result7";
+			testData = "{'phone':'18520756065'}";
+			a=$.ajax({
+				url : "member/sendSMS.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult(resultDiv,result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result);
+			   }
+			});
+		});
+		$("#button8").click(function(){
+			resultDiv="#result8";
+			testData = "{'phone_num':'18520756065','sms_code':'69bf'}";
+			a=$.ajax({
+				url : "member/validationSMS.do",
+				type : "post",
+				data : user = testData,
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult(resultDiv,result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult(resultDiv,result);
+			   }
+			});
+		});
+		
+		
+		
+		
+	}); 
+</script>
+</head>
+<body style="background: #ffffff; margin: 0px; padding: 0px;">
+<h1 class="text-success text-center">init</h1>
+<div class="table-responsive">
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>提交代碼版本號（codeversion)</td>
+			<td>
+				<button id="button1" class="btn">checkMaint</button>
+			</td>
+			
+			<td id="result1"></td>
+		</tr>
+		<tr>
+			<td>查看APP當前版本是否需要強制更新</td>
+			<td>
+				<button id="button2" class="btn">checkUpdate</button>
+			</td>
+			
+			<td id="result2"></td>
+		</tr>
+		<tr>
+			<td>訪問後台以動態更新一些本地數據</td>
+			<td>
+				<button id="button3" class="btn">dataUpdate</button>
+			</td>
+			
+			<td id="result3"></td>
+		</tr>
+		
+		
+	</table>
+</div>
+	<h1 class="text-success text-center">登陆</h1>
+<div class="table-responsive">
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>登入用途，採用雙重加密</td>
+			<td>
+				<button id="button4" class="btn">login</button>
+			</td>
+			
+			<td id="result4"></td>
+		</tr>
+		<tr>
+			<td>提交會員手機號，新密碼</td>
+			<td>
+				<button id="button5" class="btn">resetPwd</button>
+			</td>
+			
+			<td id="result5"></td>
+		</tr>
+	</table>
+</div>
+	<h1 class="text-success text-center">注册</h1>
+<div class="table-responsive">
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='30%'>功能</td>
+			<td width='8%'>click</td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>提交用戶信息，注冊帳號</td>
+			<td>
+				<button id="button6" class="btn">registerMember</button>
+			</td>
+			
+			<td id="result6"></td>
+		</tr>
+		<tr>
+			<td>提交手機號，以申請獲得手機號驗証碼</td>
+			<td>
+				<button id="button7" class="btn">sendSMS</button>
+			</td>
+			
+			<td id="result7"></td>
+		</tr>
+		<tr>
+			<td>提交SMS驗証碼跟手機號，以驗証手機號碼</td>
+			<td>
+				<button id="button8" class="btn">validationSMS</button>
+			</td>
+			
+			<td id="result8"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

@@ -3,8 +3,6 @@ package com.yxtar.app.base.model.map;
 import java.util.Date;
 import java.util.List;
 
-
-
 public class CharityCampMap extends BaseMap {
 	private Integer id;
 	private AdvertiserMap advertisers;
@@ -20,7 +18,7 @@ public class CharityCampMap extends BaseMap {
 	private Integer campType;
 	private Integer cycleNumber;
 	private Integer cycleNoofdate;
-	private Integer currentCycle;
+	private Double maxDonationAmount;
 	private Date startDate;
 	private Date endDate;
 	private String province;
@@ -39,11 +37,11 @@ public class CharityCampMap extends BaseMap {
 	private Integer donationTOne;
 	private Integer donationTTwo;
 	private Integer donationTThree;
-	
+
 	private Double amountPerSupport;
 	private Double longitude;
 	private Double latitude;
-	
+
 	private Integer status;
 	private Integer periodNum;
 
@@ -155,14 +153,6 @@ public class CharityCampMap extends BaseMap {
 
 	public void setCycleNoofdate(Integer cycleNoofdate) {
 		this.cycleNoofdate = cycleNoofdate;
-	}
-
-	public Integer getCurrentCycle() {
-		return currentCycle;
-	}
-
-	public void setCurrentCycle(Integer currentCycle) {
-		this.currentCycle = currentCycle;
 	}
 
 	public Date getStartDate() {
@@ -387,6 +377,14 @@ public class CharityCampMap extends BaseMap {
 
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+
+	public Double getMaxDonationAmount() {
+		return maxDonationAmount;
+	}
+
+	public void setMaxDonationAmount(Double maxDonationAmount) {
+		this.maxDonationAmount = maxDonationAmount;
 	}
 
 }

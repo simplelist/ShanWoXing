@@ -5,8 +5,7 @@ package com.yxtar.app.shared.enums;
  *
  */
 public enum DailyCampActionType {
-	off(0),
-	on(1)
+	QRCodeScan(0)
 	;
 	
 	

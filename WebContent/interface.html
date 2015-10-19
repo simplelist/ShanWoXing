@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" language="javascript" src="javascript/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="javascript/bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript" src="javascript/less.min.js"></script>
+    <script type="text/javascript">
+	$().ready(function() {
+		result="";
+		function setResult(selector,data){
+			$(selector).html(data);
+		}
+		$("#button1").click(function(){
+			testData = "{'userId':'d92d4940-08fd-11e5-6130-e3388a085424'}";
+			a=$.ajax({
+				url : "member/getByAll.do",
+				type : "post",
+				data : user = testData, 
+				success: function(data, textStatus, request){
+					result=textStatus+"------->"+a.getAllResponseHeaders();
+					setResult("#result1",result);
+			   },
+			   error: function (request, textStatus, errorThrown) {
+				   	result=textStatus+":"+errorThrown;
+					setResult("#result1",result);
+			   }
+			});
+		});
+		
+		
+	}); 
+</script>
+  </head>
+ <body style="background: #ffffff; margin: 0px; padding: 0px;">
+<h1 class="text-success text-center">board模块</h1>
+<div class="table-responsive">
+	<table class="table table-striped text-justify" style="width:100%">
+		<tr>
+			<td width='20%'>功能</td>
+			<td width='20%'></td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td>提交用戶id, 返回有管理權限的日記列表信息，包括日記id, 等等</td>
+			<td>
+				<button id="button1" class="btn">getAdminBoard</button>
+			</td>
+			<td id="result1"></td>
+		</tr>
+		
+	</table>
+</div>
+	
+</body>
+</html>

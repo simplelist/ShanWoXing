@@ -17,24 +17,25 @@ import com.yxtar.app.base.model.map.BaseMap;
 public abstract class BaseDto implements Serializable, StrategyMap {
 
 	/**
-	 * process the complex type by subClass
-	 * 声明abstract方法由子类自己去处理复杂类型
-	 * @param map 被复制的BaseMap类
+	 * process the complex type by subClass 声明abstract方法由子类自己去处理复杂类型
+	 * 
+	 * @param map
+	 *            被复制的BaseMap类
 	 */
 	public abstract void copyFromMapProcess(BaseMap map);
-	
-	
+
 	/**
-	 * process the base type by subClass
-	 * 处理基本类型和字符串
-	 * @param map 被复制的BaseMap类
+	 * process the base type by subClass 处理基本类型和字符串
+	 * 
+	 * @param map
+	 *            被复制的BaseMap类
 	 */
 	public BaseDto copyFromMap(BaseMap map) {
 		try {
 			if (null != map) {
 				Class<?> mapClass = Class.forName(map.getClass().getName());
 				Field[] mapFields = mapClass.getDeclaredFields();
-				
+
 				// 将map里的字段放到list中
 				Class<?> dtoClass = Class.forName(this.getClass().getName());
 				List<String> fieldList = new ArrayList<String>();
@@ -43,7 +44,7 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 					fieldList.add(field.getName());
 				}
 				for (Field field : mapFields) {
-					if (null!=getter(map, field)) {
+					if (null != getter(map, field)) {
 						// 有值才处理
 						if (fieldList.contains(field.getName())) {
 							// dto中必须也有对应的字段,才处理
@@ -55,7 +56,7 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 						}
 					}
 				}
-				//子类处理
+				// 子类处理
 				copyFromMapProcess(map);
 			}
 		} catch (ClassNotFoundException e) {
@@ -65,14 +66,15 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 	}
 
 	/**
-	 * 将dto类型转换为对应的Map类型
-	 * 声明abstract方法由子类去完成一些非基本类型的处理
-	 * @param object 生成的新的Map对象
+	 * 将dto类型转换为对应的Map类型 声明abstract方法由子类去完成一些非基本类型的处理
+	 * 
+	 * @param object
+	 *            生成的新的Map对象
 	 */
 	public abstract void generateMapProcess(Object object);
+
 	/**
-	 * 将dto类型转换为对应的Map类型
-	 * 处理基本类型
+	 * 将dto类型转换为对应的Map类型 处理基本类型
 	 */
 	@Override
 	public Object generateMap() {
@@ -121,9 +123,8 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 	}
 
 	/**
-	 * 获取Field的值
-	 * getXxx();
-	 * 将Field名字的首字母大写
+	 * 获取Field的值 getXxx(); 将Field名字的首字母大写
+	 * 
 	 * @param obj
 	 *            操作的对象
 	 * @param att
@@ -141,9 +142,8 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 	}
 
 	/**
-	 * 设置Field的值
-	 * setXxx();
-	 * 将Field名字的首字母大写
+	 * 设置Field的值 setXxx(); 将Field名字的首字母大写
+	 * 
 	 * @param obj
 	 *            操作的对象
 	 * @param att
@@ -164,6 +164,7 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 
 	/**
 	 * 首字母转大写
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -177,6 +178,7 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 
 	/**
 	 * 判断类是否为基本类型
+	 * 
 	 * @param clz
 	 * @return
 	 */
@@ -188,5 +190,5 @@ public abstract class BaseDto implements Serializable, StrategyMap {
 		}
 	}
 
-
+	
 }

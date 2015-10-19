@@ -1,47 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>MobileAppBase</groupId>
-  <artifactId>MobileAppBase</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
-  <name>MobileAppBase</name>
-  <description>MobileAppBase is used as a base for other project</description>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-      <resource>
-        <directory>gwt-src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
-    <plugins>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>MobileAppBase</groupId>
+	<artifactId>MobileAppBase</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>MobileAppBase</name>
+	<description>MobileAppBase is used as a base for other project</description>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>gwt-src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
 		<!-- common -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -74,11 +75,11 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		<!-- spring for cassandra-->
+		<!-- spring for cassandra -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-cassandra</artifactId>
-			<version>1.1.2.RELEASE</version>
+			<version>1.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -103,7 +104,7 @@
 		<!-- <artifactId>spring-core</artifactId> -->
 		<!-- <version>${spring.version}</version> -->
 		<!-- </dependency> -->
-		<!-- spring  -->
+		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -144,7 +145,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
@@ -175,7 +176,7 @@
 		</dependency>
 
 		<!-- GXT -->
- 		<dependency>
+		<dependency>
 			<groupId>com.google.gxt</groupId>
 			<artifactId>gxt</artifactId>
 			<version>3.0.0</version>
@@ -188,7 +189,7 @@
 			<version>3.0.0</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/WebContent/WEB-INF/lib/gxt-chart.jar</systemPath>
-		</dependency> 
+		</dependency>
 		<dependency>
 			<groupId>com.google.gxt</groupId>
 			<artifactId>gxt-legacy</artifactId>
@@ -208,24 +209,114 @@
 			<artifactId>gwtphonegap</artifactId>
 			<version>${gwtphonegap.version}</version>
 		</dependency>
-		
+
 		<!-- alibaba cache -->
 		<dependency>
-		     <groupId>com.alibaba</groupId>
-		     <artifactId>druid</artifactId>
-		     <version>1.0.14</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.14</version>
 		</dependency>
-		
-		
+		<!-- Jackson JSON Mapper -->
 		<dependency>
-		  <groupId>com.datastax.cassandra</groupId>
-		  <artifactId>cassandra-driver-core</artifactId>
-		  <version>2.1.7</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- log4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.3</version>
 		</dependency>
 		<dependency>
-		  <groupId>com.datastax.cassandra</groupId>
-		  <artifactId>cassandra-driver-mapping</artifactId>
-		  <version>2.1.7</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>	
+			<version>${datastax.cassandra.version}</version>		
+		</dependency>
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-mapping</artifactId>			
+			<version>${datastax.cassandra.version}</version>	
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.oss</groupId>
+			<artifactId>aliyun-sdk-oss</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
+		<!-- for Apple APNS -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>dbay-apns-for-java</groupId>
+			<artifactId>dbayapns</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/dbay-apns4j-1.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+
+		<!-- for getui push -->
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.getui.code</groupId>
+			<artifactId>gexin-rp-sdk-base</artifactId>
+			<version>4.0.0.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/gexin-rp-sdk-base-4.0.0.2.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.getui.code</groupId>
+			<artifactId>gexin-rp-sdk-http</artifactId>
+			<version>4.0.0.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/gexin-rp-sdk-http-4.0.0.2.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.getui.code</groupId>
+			<artifactId>gexin-rp-sdk-template</artifactId>
+			<version>4.0.0.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/gexin-rp-sdk-template-4.0.0.2.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-all</artifactId>
+			<version>1.8.5</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/jackson-all-1.8.5.jar</systemPath>
 		</dependency>
 	</dependencies>
 
@@ -239,7 +330,7 @@
 	<properties>
 		<log4j.version>1.2.16</log4j.version>
 		<slf4j.version>1.6.1</slf4j.version>
-<!-- 		<hibernate.annotations.version>4.0.2.Final</hibernate.annotations.version> -->
+		<!-- <hibernate.annotations.version>4.0.2.Final</hibernate.annotations.version> -->
 		<hibernate.version>4.2.5.FINAL</hibernate.version>
 		<jpa.version>1.0</jpa.version>
 		<spring.version>4.0.6.RELEASE</spring.version>
@@ -248,9 +339,12 @@
 		<commons.collections.version>3.2</commons.collections.version>
 		<commons.io.version>1.4</commons.io.version>
 		<commons.lang.version>2.3</commons.lang.version>
+		<datastax.cassandra.version>2.1.8</datastax.cassandra.version>
 		<gwtphonegap.version>2.4.0.0</gwtphonegap.version>
 		<mgwt.version>2.0.0</mgwt.version>
 		<gwt.version>2.6.1</gwt.version>
+		<jackson.version>1.9.10</jackson.version>
 		<spring.framework.version>3.2.8.RELEASE</spring.framework.version>
+		
 	</properties>
 </project>

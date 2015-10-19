@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-         <many-to-one name="charityCampId" class="com.yxtar.server.dto.CharityCamp" unique="true">
+         <many-to-one name="charityCampId" class="com.yxtar.server.dto.CharityCamp" unique="true" lazy="false" fetch="select">
 			<column name="charityCampId" />
 		</many-to-one>
         <property name="sponsorId" type="integer">

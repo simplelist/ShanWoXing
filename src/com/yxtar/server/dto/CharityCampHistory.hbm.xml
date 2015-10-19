@@ -3,33 +3,46 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.yxtar.server.dto.CharityCampHistory" table="charity_camp_history">
-        <id name="id" type="integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
-		<many-to-one name="charityCampId" column="charityCampId" class="com.yxtar.server.dto.CharityCamp"/>
-        <property name="type" type="integer">
-            <column name="type" />
-        </property>
-        <property name="percentAge" type="integer">
-            <column name="percentAge" />
-        </property>
-        <property name="amount" type="integer">
-            <column name="amount" />
-        </property>
-        <property name="paymentRecordId" type="string">
-            <column name="paymentRecordId" />
-        </property>
-        <property name="createDate" type="java.util.Date">
-            <column name="createDate" />
-        </property>
-        <property name="htmlMode" type="java.lang.Boolean">
-            <column name="htmlMode" />
-        </property>
-        <property name="htmlContent" type="string">
-            <column name="htmlContent" />
-        </property>
-       
-    </class>
+	<class name="com.yxtar.server.dto.CharityCampHistory" table="charity_camp_history">
+		<id name="id" type="integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		
+		<many-to-one name="charityCampId" class="com.yxtar.server.dto.CharityCamp"
+			lazy="false" fetch="select">
+			<column name="charityCampId" />
+		</many-to-one>
+		<property name="type" type="integer">
+			<column name="type" />
+		</property>
+		<property name="percentAge" type="integer">
+			<column name="percentAge" />
+		</property>
+		<property name="amount" type="integer">
+			<column name="amount" />
+		</property>
+		<property name="paymentRecordId" type="string">
+			<column name="paymentRecordId" />
+		</property>
+		<property name="createDate" type="java.util.Date">
+			<column name="createDate" />
+		</property>
+		<property name="htmlContentMode" type="java.lang.Boolean">
+			<column name="htmlContentMode" />
+		</property>
+		<property name="htmlIntroMode" type="java.lang.Boolean">
+			<column name="htmlIntroMode" />
+		</property>
+		<property name="htmlContent" type="string">
+			<column name="htmlContent" />
+		</property>
+		<property name="htmlIntro" type="string">
+			<column name="htmlIntro" />
+		</property>
+		<property name="content" type="string">
+			<column name="content" />
+		</property>
+
+	</class>
 </hibernate-mapping>

@@ -22,7 +22,7 @@
 	<context:component-scan base-package="com.yxtar.server.controller" />
 	<context:component-scan base-package="com.yxtar.server.action" />
 
-<!-- 	<bean
+	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
@@ -32,5 +32,5 @@
 	</bean>
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-	</bean> -->
+	</bean>
 </beans>

@@ -205,4 +205,24 @@ public class ValidationUtil {
 		return str.matches(STR_ENG);
 	}
 
+	public boolean isPhone(String str) {
+		return str.matches(PHONE);
+	}
+
+	/**
+	 * is null or <0
+	 * @param charityCampId 
+	 * @return true: null or <0
+	 */
+	public boolean DigitIsVoid(Integer... digit) {
+		boolean isVoid=false;
+		for (Integer integer : digit) {
+			if (integer==null||integer<0) {
+				isVoid=true;
+				break;
+			}
+		}
+		return isVoid;
+	}
+
 }

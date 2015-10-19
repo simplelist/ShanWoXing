@@ -3,9 +3,7 @@ package com.yxtar.app.base.model.map;
 import java.util.Date;
 import java.util.List;
 
-public class PlatformLocationMap extends BaseMap{
-
-	
+public class PlatformLocationMap extends BaseMap {
 
 	private String locationId;
 	private String province;
@@ -17,6 +15,7 @@ public class PlatformLocationMap extends BaseMap{
 	private String detailAddr;
 
 	private List<String> tag;
+	private List<Integer> dcampLst;
 	private Date createTime;
 	private Integer reachRate;
 	private Integer status;
@@ -107,6 +106,14 @@ public class PlatformLocationMap extends BaseMap{
 
 	public void setTag(List<String> tag) {
 		this.tag = tag;
+	}
+
+	public List<Integer> getDcampLst() {
+		return dcampLst;
+	}
+
+	public void setDcampLst(List<Integer> dcampLst) {
+		this.dcampLst = dcampLst;
 	}
 
 }

@@ -20,6 +20,7 @@ import com.yxtar.app.client.mvp.AppPlaceHistoryMapper;
 import com.yxtar.app.client.mvp.PhoneActivityMapper;
 import com.yxtar.app.client.mvp.PhoneAnimationMapper;
 import com.yxtar.app.client.place.HomePlace;
+import com.yxtar.app.client.widget.Frame;
 
 
 public class AppEntryPoint implements EntryPoint {
@@ -123,7 +124,12 @@ public class AppEntryPoint implements EntryPoint {
 		PhoneAnimationMapper appAnimationMapper = new PhoneAnimationMapper();
 		AnimatingActivityManager activityManager = new AnimatingActivityManager(appActivityMapper, appAnimationMapper, clientFactory.getEventBus());
 		activityManager.setDisplay(display);
-		RootPanel.get("home").add(display);
+		Frame app = new Frame(clientFactory);
+		clientFactory.setFrame(app);
+		
+		app.setWorkSpace(display.asWidget());
+		
+		RootPanel.get("home").add(app);
 
 	}
 	
@@ -133,8 +139,12 @@ public class AppEntryPoint implements EntryPoint {
 		SimplePanel display= new SimplePanel();
 		ActivityManager activityManager = new ActivityManager(appActivityMapper, clientFactory.getEventBus());
 		activityManager.setDisplay(display);
-		RootPanel.get("home").add(display);
 
+		Frame app = new Frame(clientFactory);
+		clientFactory.setFrame(app);
+		app.setWorkSpace(display.asWidget());
+
+		RootPanel.get("home").add(app);
 	}
 
 }

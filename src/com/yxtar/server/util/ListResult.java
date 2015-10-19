@@ -19,7 +19,7 @@ public class ListResult<T extends Serializable> implements Serializable {
 	}
 
 	public boolean isEmpty() {
-		if (dataList==null||dataList.size()<=0) {
+		if (count==null||count<=0||dataList==null||dataList.size()<=0) {
 			return true;
 		}else {
 			return false;

@@ -1,18 +1,18 @@
 package com.yxtar.server.dto;
 
+import java.util.Date;
+
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+
 import com.yxtar.app.base.model.map.BaseMap;
 
-
-import java.util.Date;
-import java.util.UUID;
-
 public class DailyCamp extends BaseDto {
+
 	@Override
 	public void copyFromMapProcess(BaseMap map) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void generateMapProcess(Object object) {
@@ -20,13 +20,12 @@ public class DailyCamp extends BaseDto {
 
 	}
 
-	private UUID dcampId;
+	@PrimaryKey
+	private Integer dcampId;
 	private Integer priority;
-	private Integer sponsorId;
-	private String sponsorName;
-	private UUID sponsorPhoto;
+	private Sponsor sponsorId;
 	private String campTitle;
-	private UUID campAdvPhoto;
+	private String campAdvPhoto;
 
 	private String province;
 	private String city;
@@ -36,28 +35,20 @@ public class DailyCamp extends BaseDto {
 	private Date createTime;
 	private Integer status;
 
+	public Integer getDcampId() {
+		return dcampId;
+	}
+
+	public void setDcampId(Integer dcampId) {
+		this.dcampId = dcampId;
+	}
+
 	public Integer getPriority() {
 		return priority;
 	}
 
 	public void setPriority(Integer priority) {
 		this.priority = priority;
-	}
-
-	public String getSponsorName() {
-		return sponsorName;
-	}
-
-	public void setSponsorName(String sponsorName) {
-		this.sponsorName = sponsorName;
-	}
-
-	public UUID getSponsorPhoto() {
-		return sponsorPhoto;
-	}
-
-	public void setSponsorPhoto(UUID sponsorPhoto) {
-		this.sponsorPhoto = sponsorPhoto;
 	}
 
 	public String getCampTitle() {
@@ -68,11 +59,11 @@ public class DailyCamp extends BaseDto {
 		this.campTitle = campTitle;
 	}
 
-	public UUID getCampAdvPhoto() {
+	public String getCampAdvPhoto() {
 		return campAdvPhoto;
 	}
 
-	public void setCampAdvPhoto(UUID campAdvPhoto) {
+	public void setCampAdvPhoto(String campAdvPhoto) {
 		this.campAdvPhoto = campAdvPhoto;
 	}
 
@@ -132,20 +123,12 @@ public class DailyCamp extends BaseDto {
 		this.status = status;
 	}
 
-	public Integer getSponsorId() {
+	public Sponsor getSponsorId() {
 		return sponsorId;
 	}
 
-	public void setSponsorId(Integer sponsorId) {
+	public void setSponsorId(Sponsor sponsorId) {
 		this.sponsorId = sponsorId;
-	}
-
-	public UUID getDcampId() {
-		return dcampId;
-	}
-
-	public void setDcampId(UUID dcampId) {
-		this.dcampId = dcampId;
 	}
 
 }

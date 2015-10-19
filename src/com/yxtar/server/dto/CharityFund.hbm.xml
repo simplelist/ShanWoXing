@@ -8,7 +8,9 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="charityOrgId" column="charityOrgId" class="com.yxtar.server.dto.CharityOrg"/>
+         <many-to-one name="charityOrgId" class="com.yxtar.server.dto.CharityOrg" lazy="false" fetch="select">
+			<column name="charityOrgId" />
+		</many-to-one>
         <property name="title" type="string">
             <column name="title" />
         </property>
@@ -51,10 +53,12 @@
         <property name="fundTotal" type="double">
             <column name="fundTotal" />
         </property>
-        
-        <set name="charityCamps" table="camp_fund_relation">
-		   <key column="fund_id"/>
-		   <many-to-many class="com.yxtar.server.dto.CharityCamp" column="camp_id"/>
+        <set name="campFundRelations" lazy="false" cascade="all"
+			order-by="id desc">
+			<key>
+				<column name="fund_id" />
+			</key>
+			<one-to-many class="com.yxtar.server.dto.CampFundRelation" />
 		</set>
 		
 		<set name="charityFundHistories" lazy="false" cascade="all" order-by="id desc">

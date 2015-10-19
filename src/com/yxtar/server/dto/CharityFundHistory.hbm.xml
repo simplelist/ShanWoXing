@@ -8,7 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="charityFundId" column="charityFundId" class="com.yxtar.server.dto.CharityFundHistory"/>
+        
+         <many-to-one name="charityFundId" class="com.yxtar.server.dto.CharityFundHistory" lazy="false" fetch="select">
+			<column name="charityFundId" />
+		</many-to-one>
         <property name="type" type="integer">
             <column name="type" />
         </property>
@@ -24,11 +27,17 @@
         <property name="createDate" type="java.util.Date">
             <column name="createDate" />
         </property>
-          <property name="htmlMode" type="java.lang.Boolean">
-            <column name="htmlMode" />
+          <property name="htmlContentMode" type="java.lang.Boolean">
+            <column name="htmlContentMode" />
+        </property>
+        <property name="htmlIntroMode" type="java.lang.Boolean">
+            <column name="htmlIntroMode" />
         </property>
         <property name="htmlContent" type="string">
             <column name="htmlContent" />
+        </property>
+        <property name="htmlIntro" type="string">
+            <column name="htmlIntro" />
         </property>
     </class>
 </hibernate-mapping>

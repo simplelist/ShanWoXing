@@ -1,9 +1,11 @@
 package com.yxtar.server.dto;
 
 import com.yxtar.app.base.model.map.BaseMap;
-
+import com.yxtar.server.util.CustomDateSerializer;
 
 import java.util.Date;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class CharityFundHistory extends BaseDto {
 	@Override
@@ -20,8 +22,10 @@ public class CharityFundHistory extends BaseDto {
 	private String paymentRecordId;
 	private Date createDate;
 
-	private Boolean htmlMode;
+	private Boolean htmlContentMode;
+	private Boolean htmlIntroMode;
 	private String htmlContent;
+	private String htmlIntro;
 
 	public Integer getId() {
 		return id;
@@ -62,21 +66,13 @@ public class CharityFundHistory extends BaseDto {
 	public void setPaymentRecordId(String paymentRecordId) {
 		this.paymentRecordId = paymentRecordId;
 	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)  
 	public Date getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public Boolean getHtmlMode() {
-		return htmlMode;
-	}
-
-	public void setHtmlMode(Boolean htmlMode) {
-		this.htmlMode = htmlMode;
 	}
 
 	public String getHtmlContent() {
@@ -99,6 +95,30 @@ public class CharityFundHistory extends BaseDto {
 
 	public void setCharityFundId(CharityFund charityFundId) {
 		this.charityFundId = charityFundId;
+	}
+
+	public Boolean getHtmlContentMode() {
+		return htmlContentMode;
+	}
+
+	public void setHtmlContentMode(Boolean htmlContentMode) {
+		this.htmlContentMode = htmlContentMode;
+	}
+
+	public Boolean getHtmlIntroMode() {
+		return htmlIntroMode;
+	}
+
+	public void setHtmlIntroMode(Boolean htmlIntroMode) {
+		this.htmlIntroMode = htmlIntroMode;
+	}
+
+	public String getHtmlIntro() {
+		return htmlIntro;
+	}
+
+	public void setHtmlIntro(String htmlIntro) {
+		this.htmlIntro = htmlIntro;
 	}
 
 }

@@ -18,14 +18,19 @@ package com.yxtar.app.client;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.yxtar.app.base.environment.SystemParams;
+import com.yxtar.app.base.framework.CommenClientFactory;
 import com.yxtar.app.client.activity.SystemEngine;
 import com.yxtar.app.client.ui.HomeView;
+import com.yxtar.app.client.ui.UserEditView;
+import com.yxtar.app.client.ui.UserView;
+import com.yxtar.app.client.widget.Frame;
+import com.yxtar.app.client.widget.Menu;
 
 public interface ClientFactory {
 
 	public EventBus getEventBus();
 
-	public ClientRpcRequestor getclientRpcRequestor();
+	public ClientRpcRequestor getClientRpcRequestor();
 
 	public PlaceController getPlaceController();
 
@@ -34,5 +39,18 @@ public interface ClientFactory {
 	public SystemParams getSystemParams();
 
 	public SystemEngine getSystemEngine();
+
+	public void setFrame(Frame app);
+
+	public Frame getFrame();
+
+	public Menu getMenu();
+
+	public UserView getUserView();
+
+	public UserEditView getUserEditView();
+
+	public CommenClientFactory getCommenClientFactory();
+
 
 }

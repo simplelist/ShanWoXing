@@ -2,14 +2,11 @@ package com.yxtar.app.base.model.map;
 
 import java.util.Date;
 
-public class DailyCampMap  extends BaseMap{
-
+public class DailyCampMap extends BaseMap {
 
 	private String dcampId;
 	private Integer priority;
-	private Integer sponsorId;
-	private String sponsorName;
-	private String sponsorPhoto;
+	private SponsorMap sponsorId;
 	private String campTitle;
 	private String campAdvPhoto;
 
@@ -27,22 +24,6 @@ public class DailyCampMap  extends BaseMap{
 
 	public void setPriority(Integer priority) {
 		this.priority = priority;
-	}
-
-	public String getSponsorName() {
-		return sponsorName;
-	}
-
-	public void setSponsorName(String sponsorName) {
-		this.sponsorName = sponsorName;
-	}
-
-	public String getSponsorPhoto() {
-		return sponsorPhoto;
-	}
-
-	public void setSponsorPhoto(String sponsorPhoto) {
-		this.sponsorPhoto = sponsorPhoto;
 	}
 
 	public String getCampTitle() {
@@ -117,20 +98,20 @@ public class DailyCampMap  extends BaseMap{
 		this.status = status;
 	}
 
-	public Integer getSponsorId() {
-		return sponsorId;
-	}
-
-	public void setSponsorId(Integer sponsorId) {
-		this.sponsorId = sponsorId;
-	}
-
 	public String getDcampId() {
 		return dcampId;
 	}
 
 	public void setDcampId(String dcampId) {
 		this.dcampId = dcampId;
+	}
+
+	public SponsorMap getSponsorId() {
+		return sponsorId;
+	}
+
+	public void setSponsorId(SponsorMap sponsorId) {
+		this.sponsorId = sponsorId;
 	}
 
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-9-18 11:24:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.yxtar.server.dto.DailyCamp" table="daily_camp">
+        <id name="dcampId" type="integer">
+            <column name="dcampId" />
+            <generator class="identity" />
+        </id>
+        <property name="priority" type="integer">
+            <column name="priority" />
+        </property>
+        
+        <many-to-one name="sponsorId" class="com.yxtar.server.dto.Sponsor" lazy="false" fetch="select">
+			<column name="sponsorId" />
+		</many-to-one>
+        <property name="campTitle" type="string">
+            <column name="campTitle" />
+        </property>
+        <property name="campAdvPhoto" type="string">
+            <column name="campAdvPhoto" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="district" type="string">
+            <column name="district" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" />
+        </property>
+        <property name="amountPerSupport" type="double">
+            <column name="amountPerSupport" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="createTime" />
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,9 +1,11 @@
 package com.yxtar.server.dto;
 
 import com.yxtar.app.base.model.map.BaseMap;
-
+import com.yxtar.server.util.CustomDateSerializer;
 
 import java.util.Date;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class MoneyInRecord extends BaseDto{
 
@@ -38,7 +40,7 @@ public class MoneyInRecord extends BaseDto{
 	public void setPaymentType(Integer paymentType) {
 		this.paymentType = paymentType;
 	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)  
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -46,7 +48,7 @@ public class MoneyInRecord extends BaseDto{
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
+	@JsonSerialize(using = CustomDateSerializer.class)  
 	public Date getPaidTime() {
 		return paidTime;
 	}

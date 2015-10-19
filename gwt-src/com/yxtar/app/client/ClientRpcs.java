@@ -12,7 +12,13 @@ public interface ClientRpcs {
 	public AdminRemoteServiceAsync adminSvc = GWT.create(AdminRemoteService.class);
 	public String adminRelativeURL = Environment.urlParam + "/AdminServlet";
 
-	public ServiceDefTarget[] localAsynSvcLst = { (ServiceDefTarget) testSvc, (ServiceDefTarget) adminSvc };
+	public AdvertiserRemoteServiceAsync advertiserSvc = GWT.create(AdvertiserRemoteService.class);
+	public String advertiserRelativeURL = Environment.urlParam + "/AdvertiserServlet";
+	
+	public MemberRemoteServiceAsync memberSvc = GWT.create(MemberRemoteService.class);
+	public String memberRelativeURL = Environment.urlParam + "/MemberServlet";
 
-	public String[] localRelativeURLLst = { testRelativeURL, adminRelativeURL };
+	public ServiceDefTarget[] localAsynSvcLst = { (ServiceDefTarget) testSvc, (ServiceDefTarget) adminSvc, (ServiceDefTarget) advertiserSvc ,(ServiceDefTarget) memberSvc};
+
+	public String[] localRelativeURLLst = { testRelativeURL, adminRelativeURL, advertiserRelativeURL ,memberRelativeURL};
 }

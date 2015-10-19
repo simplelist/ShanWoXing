@@ -19,9 +19,17 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.yxtar.app.base.environment.SystemParams;
+import com.yxtar.app.base.framework.CommenClientFactory;
+import com.yxtar.app.base.framework.CommenClientFactoryImpl;
 import com.yxtar.app.client.activity.SystemEngine;
 import com.yxtar.app.client.ui.HomeView;
 import com.yxtar.app.client.ui.HomeViewImpl;
+import com.yxtar.app.client.ui.UserEditView;
+import com.yxtar.app.client.ui.UserEditViewImpl;
+import com.yxtar.app.client.ui.UserView;
+import com.yxtar.app.client.ui.UserViewImpl;
+import com.yxtar.app.client.widget.Frame;
+import com.yxtar.app.client.widget.Menu;
 
 /**
  * @author Daniel Kurka
@@ -35,11 +43,19 @@ public class ClientFactoryImpl implements ClientFactory {
 	private HomeView homeView = new HomeViewImpl();
 	private SystemEngine systemEngine;
 	private ClientRpcRequestor clientRpcRequestor; 
+	private Frame frame = null;
+	private Menu menu;
+	private CommenClientFactory commenClientFactory;
+	private UserView userView;
+	private UserEditView userEditView;
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
 		placeController = new PlaceController(eventBus);
 		systemEngine = new SystemEngine(this);
 		clientRpcRequestor=new ClientRpcRequestor();
+		userView = new UserViewImpl();
+		userEditView = new UserEditViewImpl(systemParams);
+		commenClientFactory = new CommenClientFactoryImpl();
 	}
 
 	@Override
@@ -71,8 +87,40 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public ClientRpcRequestor getclientRpcRequestor() {
+	public ClientRpcRequestor getClientRpcRequestor() {
 		return this.clientRpcRequestor;
 	}
+
+	@Override
+	public void setFrame(Frame app) {
+		this.frame = app;
+		menu = frame.getMenu();
+	}
+
+	@Override
+	public Frame getFrame() {
+		return this.frame;
+	}
+
+	@Override
+	public Menu getMenu() {
+		return this.menu;
+	}
+
+	@Override
+	public UserView getUserView() {
+		return this.userView;
+	}
+
+	@Override
+	public UserEditView getUserEditView() {
+		return this.userEditView;
+	}
+
+	@Override
+	public CommenClientFactory getCommenClientFactory() {
+		return this.commenClientFactory;
+	}
+
 
 }

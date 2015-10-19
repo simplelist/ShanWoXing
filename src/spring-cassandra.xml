@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0'?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:cassandra="http://www.springframework.org/schema/data/cassandra"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cassandra="http://www.springframework.org/schema/data/cassandra"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/cql http://www.springframework.org/schema/data/cassandra/spring-cql-1.0.xsd
     http://www.springframework.org/schema/data/cassandra http://www.springframework.org/schema/data/cassandra/spring-cassandra-1.0.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
- <!-- 自动加载构建bean -->  
+
+	
 	<context:component-scan base-package="com.yxtar.server.cassandra.dao"></context:component-scan>
+	<context:component-scan base-package="com.yxtar.server.cassandra.dao.impl"></context:component-scan>
+ 	<context:component-scan base-package="com.yxtar.server.cassandra.dao.respository"></context:component-scan>
 	<context:component-scan base-package="com.yxtar.server.dao"></context:component-scan>
 	<context:component-scan base-package="com.yxtar.server.dao.impl"></context:component-scan>
 	<context:component-scan base-package="com.yxtar.server.service"></context:component-scan>
 	<context:component-scan base-package="com.yxtar.server.service.impl"></context:component-scan>
 	<context:component-scan base-package="com.yxtar.server.servlet"></context:component-scan>
-
+	<context:component-scan base-package="com.yxtar.server.action"></context:component-scan>
 	<context:property-placeholder location="classpath:cassandra.properties" />
 	<!-- <bean id="hostStateListener" class="org.springframework.cassandra.test.integration.config.xml.TestHostStateListener" 
 		/> <bean id="latencyTracker" class="org.springframework.cassandra.test.integration.config.xml.TestLatencyTracker" 
@@ -41,10 +43,7 @@
 		class="com.datastax.driver.core.policies.DowngradingConsistencyRetryPolicy" />
 
 	<!-- orm -->
-	<cassandra:mapping entity-base-packages="com.flamingo.positive.dto">
-		<!-- <cassandra:entity class="com.flamingo.positive.dto.News"> <cassandra:table 
-			name="news" /> </cassandra:entity> -->
-	</cassandra:mapping>
+	<cassandra:mapping entity-base-packages="com.yxtar.server.dto.cassandra"></cassandra:mapping>
 	<!-- 类型转换 -->
 	<cassandra:converter />
 
@@ -73,7 +72,7 @@
 
 		<!-- 定义其他的scheam -->
 		<!-- <cassandra:keyspace name="wufeng" action="ALTER" /> -->
-		<cassandra:keyspace name="Foo123" action="${keyspace.action}"
+<!-- 		<cassandra:keyspace name="Foo123" action="${keyspace.action}"
 			durable-writes="true">
 			<cassandra:replication class="NETWORK_TOPOLOGY_STRATEGY">
 				<cassandra:data-center replication-factor="${dc1.rf}"
@@ -81,12 +80,13 @@
 				<cassandra:data-center replication-factor="${dc1.rf}"
 					name="${dc2.name}" />
 			</cassandra:replication>
-		</cassandra:keyspace>
+		</cassandra:keyspace> -->
 	</cassandra:cluster>
 
 	<!-- 当前使用scheam -->
-	<cassandra:session keyspace-name="${keyspace.name}" />
-
+	<!-- <cassandra:session keyspace-name="${keyspace.name}" /> -->
+<cassandra:session id="cassandraSession" cluster-ref="cassandraCluster"
+        keyspace-name="${keyspace.name}" />
 	<!-- <bean id="cqlTemplate" class="org.springframework.cassandra.core.CqlTemplate"> 
 		<constructor-arg ref="cassandraSession" /> </bean> -->
 

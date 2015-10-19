@@ -1,18 +1,19 @@
 package com.yxtar.server.dto;
 
 import com.yxtar.app.base.model.map.BaseMap;
-
+import com.yxtar.server.util.CustomDateSerializer;
 
 import java.util.Date;
 import java.util.Set;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class CharityFund extends BaseDto {
 	@Override
 	public void copyFromMapProcess(BaseMap map) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	private Integer id;
 	private CharityOrg charityOrgId;
@@ -30,8 +31,9 @@ public class CharityFund extends BaseDto {
 	private Date endDate;
 	private Integer status;
 	private Double fundTotal;
-	private Set<CharityCamp> charityCamps;
+	private Set<CampFundRelation> campFundRelations;
 	private Set<CharityFundHistory> charityFundHistories;
+
 	public Integer getId() {
 		return id;
 	}
@@ -120,6 +122,7 @@ public class CharityFund extends BaseDto {
 		this.htmlIntrod = htmlIntrod;
 	}
 
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -128,6 +131,7 @@ public class CharityFund extends BaseDto {
 		this.createDate = createDate;
 	}
 
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -152,18 +156,10 @@ public class CharityFund extends BaseDto {
 		this.fundTotal = fundTotal;
 	}
 
-	public Set<CharityCamp> getCharityCamps() {
-		return charityCamps;
-	}
-
-	public void setCharityCamps(Set<CharityCamp> charityCamps) {
-		this.charityCamps = charityCamps;
-	}
-
 	@Override
 	public void generateMapProcess(Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Set<CharityFundHistory> getCharityFundHistories() {
@@ -180,6 +176,14 @@ public class CharityFund extends BaseDto {
 
 	public void setCharityOrgId(CharityOrg charityOrgId) {
 		this.charityOrgId = charityOrgId;
+	}
+
+	public Set<CampFundRelation> getCampFundRelations() {
+		return campFundRelations;
+	}
+
+	public void setCampFundRelations(Set<CampFundRelation> campFundRelations) {
+		this.campFundRelations = campFundRelations;
 	}
 
 }
